@@ -9,8 +9,9 @@ if (localStorage.getItem("products") !== null) {
   productList = JSON.parse(localStorage.getItem("products"));
   displayProduct();
 }
+
 function submitBtn() {
-  if (validateData === true) {
+  if (validateData() === true) {
     var product = {
       name: siteNameEl.value,
       link: siteLinkEl.value,
@@ -39,7 +40,7 @@ function displayProduct() {
     productInTable += `<tr>
     <td>${productList[i]}</td>
     <td>${productList[i].name}</td>
-    <td><button class="btn btn-success visit-btn " onclick="visitWebsite()">
+    <td><button class="btn btn-success visit-btn " onclick="visitWebsite(${i})">
     <i class="fa-solid fa-eye pe-2"></i>Visit</button></td>
     <td><button class="btn btn-danger" onclick="deleteItem(${i})"><i class="fa-solid fa-trash-can"></i>
     Delete</button></td>
@@ -64,14 +65,9 @@ function displayAlert() {
   alertModal.classList.replace("d-none", "d-block");
 }
 //visit function
-function visitWebsite() {
-  var websiteUrl = siteLinkEl.value;
-
-  if (websiteUrl.trim() !== "") {
-    window.open(websiteUrl, "_blank");
-  } else {
-    displayAlert();
-  }
+function visitWebsite(index) {
+  var websiteUrl = productList[index].link;
+  window.open(websiteUrl);
 }
 //fuction validate product
 function validateData() {
