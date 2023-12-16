@@ -38,7 +38,7 @@ function displayProduct() {
   var productInTable = ``;
   for (var i = 0; i < productList.length; i++) {
     productInTable += `<tr>
-    <td>${productList[i]}</td>
+    <td>${i + 1}</td>
     <td>${productList[i].name}</td>
     <td><button class="btn btn-success visit-btn " onclick="visitWebsite(${i})">
     <i class="fa-solid fa-eye pe-2"></i>Visit</button></td>
